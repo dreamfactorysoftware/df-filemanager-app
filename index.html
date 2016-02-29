@@ -6,12 +6,12 @@
 
     <!-- Standard CSS -->
 
-    <link rel="stylesheet" href="/static/bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" type="text/css"/>
+    <!-- <link rel="stylesheet" href="static/bootstrap/3.3.6/bootstrap.css" type="text/css"/> -->
 	<link href="/static/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="themes/df-default/jquery-ui-1.9.1.custom.css" type="text/css" />
 	<link rel="stylesheet" href="css/layout.css" type="text/css"/>
     <link rel="stylesheet" href="css/base.css" type="text/css"/>
-    <link href="bower_components/angular-filemanager/src/css/angular-filemanager.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/bootswatch/paper/bootstrap.min.css" />
 
     <!-- Something trying to ref the script when loading html
     so I put this here -->
@@ -21,41 +21,33 @@
     <!-- DF Imports -->
     <script src="js/df.js"></script>
     <script src="js/utils.js"></script>
-    <script src="/static/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-translate.min.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
+    <!-- <script src="js/angular-filemanager.min.js"></script> -->
+    <script src="static/bootstrap/3.3.6/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="css/angular-filemanager.css">
+    <script src="js/angular-filemanager.min.js"></script>
+
+
+    <!-- uncomment these to use source -->
+    <!-- <script src="js/angular-filemanager/src/js/app.js"></script>
+    <script src="js/angular-filemanager/src/js/directives/directives.js"></script>
+    <script src="js/angular-filemanager/src/js/filters/filters.js"></script>
+    <script src="js/angular-filemanager/src/js/providers/config.js"></script>
+    <script src="js/angular-filemanager/src/js/entities/chmod.js"></script>
+    <script src="js/angular-filemanager/src/js/entities/item.js"></script>
+    <script src="js/angular-filemanager/src/js/services/filenavigator.js"></script>
+    <script src="js/angular-filemanager/src/js/services/fileuploader.js"></script>
+    <script src="js/angular-filemanager/src/js/providers/translations.js"></script>
+    <script src="js/angular-filemanager/src/js/controllers/main.js"></script>
+    <script src="js/angular-filemanager/src/js/controllers/selector-controller.js"></script>
+    <link href="js/angular-filemanager/src/css/angular-filemanager.css" rel="stylesheet"> -->
 
     <!-- DF FileManager -->
     <script src="js/filemanagement.js"></script>
 
-    <!-- angular-filemanager -->
-
-    <script src="js/angular.js"></script>
-    <script src="js/angular-translate.js"></script>
-    <script src="js/angular-cookies.js"></script>
-
-    <script type="text/javascript">
-    //example to override angular-filemanager default config
-    angular.module('FileManagerApp')
-
-    .constant('API_KEY', 'b5cb82af7b5d4130f36149f90aa2746782e59a872ac70454ac188743cb55b0ba')
-
-    .constant('SESSION_TOKEN', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsInVzZXJfaWQiOjEsImVtYWlsIjoibGFiaWJpc21haWVsQGdtYWlsLmNvbSIsImZvcmV2ZXIiOmZhbHNlLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvYXBpXC92Mlwvc3lzdGVtXC9hZG1pblwvc2Vzc2lvbiIsImlhdCI6MTQ1NTY0ODM1OCwiZXhwIjoxNDU1NjUxOTU4LCJuYmYiOjE0NTU2NDgzNTgsImp0aSI6ImE1MjRlZmNhMDkxOTgyYWJjNDJlZGQ2OTczYTljZWZiIn0.xDRnchHuucrpie-DsXdmFN3VPRn2800iojrHKITQgzk')
-
-    .config(['fileManagerConfigProvider', '$httpProvider', 'API_KEY', 'SESSION_TOKEN', function (config, $httpProvider, API_KEY, SESSION_TOKEN) {
-
-      $httpProvider.defaults.headers.common['X-Dreamfactory-API-Key'] = API_KEY;
-      $httpProvider.defaults.headers.common['X-DreamFactory-Session-Token'] = SESSION_TOKEN;
-
-      var defaults = config.$get();
-      config.set({
-        /*appName: 'github.com/joni2back/angular-filemanager',
-        allowedActions: angular.extend(defaults.allowedActions, {
-          remove: true
-        })*/
-        tplPath: 'bower_components/angular-filemanager/' + defaults.tplPath,
-        listUrl: "/api/v2/system/service?fields=name&filter=type%3D%27local_file%27%20or%20type%3D%27aws_s3%27%20or%20type%3D%27azure_blob%27%20or%20type%3D%27rackspace_cloud_files%27&_=1455310375411"
-      });
-    }]);
-  </script>
 </head>
 <body>
 <div id="fileModal" class="modal hide fade in" style="display: none; ">
@@ -108,50 +100,52 @@
 <div id="main_content" align="left">
     <div id="fileManagerPanel">
         <div align="left" class="cH100 ui-widget ui-state-default ui-corner-all ">
-            <div class="cTM1" align="left">
-                <div id="browserControl">
-                    <div class="cRight fmToolbar cRM1">
-								<span id="mandatory_tools">
-                                   <div class="btn-toolbar">
-                                       <div class="btn-group">
-                                           <a id="mkdir" class="btn btn-small fmActionButton"><i
-                                                   class="fa fa-folder"></i>&nbsp;Create Folder</a>&nbsp;
-                                           <a id="importfile"  class="btn btn-small fmActionButton"><i
-                                                   class="fa fa-cloud-upload"></i>&nbsp;Upload File</a>&nbsp;
-                                           <a id="exportzip"  class="btn btn-small fmActionButton"><i
-                                                   class="fa fa-download"></i>&nbsp;Download Zip</a>&nbsp;
-                                           <a id="rm" class="btn btn-small fmActionButton"><i
-                                                   class="fa fa-trash-o"></i>&nbsp;Delete Item(s)</a>
+            <!--
+                <div class="cTM1" align="left">
+                    <div id="browserControl">
+                        <div class="cRight fmToolbar cRM1">
+    								<span id="mandatory_tools">
+                                       <div class="btn-toolbar">
+                                           <div class="btn-group">
+                                               <a id="mkdir" class="btn btn-small fmActionButton"><i
+                                                       class="fa fa-folder"></i>&nbsp;Create Folder</a>&nbsp;
+                                               <a id="importfile"  class="btn btn-small fmActionButton"><i
+                                                       class="fa fa-cloud-upload"></i>&nbsp;Upload File</a>&nbsp;
+                                               <a id="exportzip"  class="btn btn-small fmActionButton"><i
+                                                       class="fa fa-download"></i>&nbsp;Download Zip</a>&nbsp;
+                                               <a id="rm" class="btn btn-small fmActionButton"><i
+                                                       class="fa fa-trash-o"></i>&nbsp;Delete Item(s)</a>
+                                           </div>
                                        </div>
-                                   </div>
-								</span>
+    								</span>
+                        </div>
+                        <div class="cLeft cLM1 fmToolbarPlus3">
+                            <a id="home" class="btn btn-small fmActionButton"><i
+                                    class="fa fa-home"></i>&nbsp;Home</a>&nbsp;
+                            PATH:&nbsp;<span id="breadcrumbs">/</span>
+                        </div>
+                        <div class="cClear"></div>
                     </div>
-                    <div class="cLeft cLM1 fmToolbarPlus3">
-                        <a id="home" class="btn btn-small fmActionButton"><i
-                                class="fa fa-home"></i>&nbsp;Home</a>&nbsp;
-                        PATH:&nbsp;<span id="breadcrumbs">/</span>
+                    <div id="fileControl">
+                        <div class="cRight fmToolbar">
+    								<span id="fileControl_mandatory_tools">
+    									<button id="exitEditor">Close Editor</button>
+    								</span>
+                        </div>
+                        <strong>EDITING&nbsp;FILE:</strong> <span id="fileControl_breadcrumbs">/</span>
                     </div>
-                    <div class="cClear"><!--  --></div>
                 </div>
-                <div id="fileControl">
-                    <div class="cRight fmToolbar">
-								<span id="fileControl_mandatory_tools">
-									<button id="exitEditor">Close Editor</button>
-								</span>
-                    </div>
-                    <strong>EDITING&nbsp;FILE:</strong> <span id="fileControl_breadcrumbs">/</span>
-                </div>
-            </div>
-            <!-- <div id="dndPanel" data-target="" data-type="folder" align="left" style="background: #fff;"
-                 class="cCenter cW98 cH90 ui-widget ui-state-default ui-corner-all">
-                <div id="listing" class="scrollablePane cH95 cW98">
+                <div id="dndPanel" data-target="" data-type="folder" align="left" style="background: #fff;"
+                     class="cCenter cW98 cH90 ui-widget ui-state-default ui-corner-all">
+                    <div id="listing" class="scrollablePane cH95 cW98">
 
+                    </div>
                 </div>
-            </div>
-            <div id="editPanel" data-target="" data-type="folder" align="left" class="cCenter cW98 cH90">
-                <iframe id="editing" width="100%" height="100%" src="about:blank"
-                        class="ui-widget ui-state-default ui-corner-all"></iframe>
-            </div> -->
+                <div id="editPanel" data-target="" data-type="folder" align="left" class="cCenter cW98 cH90">
+                    <iframe id="editing" width="100%" height="100%" src="about:blank"
+                            class="ui-widget ui-state-default ui-corner-all"></iframe>
+                </div>
+            -->
             <angular-filemanager></angular-filemanager>
         </div>
         <div class="cClear"></div>
