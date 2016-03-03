@@ -41,8 +41,13 @@
             self.fileList = [];
             self.error = '';
 
-            var url = fileManagerConfig.baseUrl + path
-            //var url = self.url || fileManagerConfig.listUrl + path;
+            var url = '';
+            if(!path) {
+                url = fileManagerConfig.listUrl;
+            } else {
+                url = fileManagerConfig.baseUrl + path
+            }
+
             if(!url.endsWith('/')) url = url + '/';
 
             $http.get(url).success(function(data) {

@@ -44,12 +44,13 @@
                 return $scope.fileNavigator.folderClick(item);
             }
             if (item.isImage()) {
-                return item.preview();
+                var base = fileManagerConfig.baseUrl.endsWith("/") ? fileManagerConfig.baseUrl.substring(0, fileManagerConfig.baseUrl.length - 1) : fileManagerConfig.baseUrl;
+                var target = $(this).data('path');
+                var url = item.imagePath;
+                window.open(url, '_blank', '');
             }
             if (item.isEditable()) {
                 item.getContent();
-                $scope.touch(item);
-                return $scope.modal('edit');
             }
         };
 

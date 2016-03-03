@@ -3,7 +3,6 @@
     angular.module('FileManagerApp').factory('item', ['$http', '$q', '$translate', 'fileManagerConfig', 'chmod', 'API_KEY', 'SESSION_TOKEN', function($http, $q, $translate, fileManagerConfig, Chmod, API_KEY, SESSION_TOKEN) {
 
         var Item = function(model, path) {
-            console.log(model)
             var rawModel = {
                 name: model && model.name || '',
                 path: path || [],
@@ -25,6 +24,10 @@
             this.error = '';
             this.inprocess = false;
 
+            if(rawModel.type === 'file' && rawModel.content_type && rawModel.content_type.indexOf("image/") > -1) {
+                this.imagePath = fileManagerConfig.baseUrl + (rawModel.path.join('/') + '/' + rawModel.name).replace(/\/\//, '/') + '?api_key=' + API_KEY + '&session_token=' + SESSION_TOKEN;
+            }
+
             this.model = angular.copy(rawModel);
             this.tempModel = angular.copy(rawModel);
             function getMonthFromString(mon){
@@ -33,7 +36,6 @@
 
             function parseMySQLDate(mysqlDate) {
                 var d = (mysqlDate || '').toString().split(/[- :]/);
-                //return new Date(d[0], d[1] - 1, d[2], d[3], d[4], d[5]);
                 return new Date(d[3], getMonthFromString(d[2]), d[1], d[4], d[5], d[6]);
             }
         };
@@ -221,7 +223,7 @@
 
             var mime = self.tempModel.content_type;
 
-            var url = '/files' + self.model.fullPath() + '?method=GET';
+            var url = self.model.fullPath() + '?method=GET';
 
             var w = window.open('editor.html?path=' + url + '&mime=' + mime + '&api_key=' + apiKey + '&session_token=' + sessionToken,
                 url + " " + mime,
@@ -267,11 +269,6 @@
 
             var self = this;
             var deferred = $q.defer();
-            /*var data = {params: {
-                mode: "savefile",
-                content: self.tempModel.content,
-                path: self.tempModel.fullPath()
-            }};*/
 
             var url = fileManagerConfig.baseUrl + self.model.fullPath();
 

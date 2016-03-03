@@ -13,9 +13,17 @@
 
     app.filter('formatDate', ['$filter', function($filter) {
         return function(input, limit) {
-            return input instanceof Date ?
-                input.toISOString().substring(0, 19).replace('T', ' ') :
-                (input.toLocaleString || input.toString).apply(input);
+            var ret = false;
+            if(input instanceof Date) {
+                try {
+                    ret = input.toISOString().substring(0, 19).replace('T', ' ');
+
+                } catch(e) {
+                    ret = (input.toLocaleString || input.toString).apply(input);
+                }
+            }
+            return ret;
+
         };
     }]);
 })(angular);
