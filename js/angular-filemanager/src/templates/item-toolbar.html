@@ -1,12 +1,12 @@
-<div ng-show="!item.inprocess">
+<div ng-show="!item.inprocess" ng-hide="fileNavigator.rootLevel">
     <button class="btn btn-sm btn-default" ng-show="config.allowedActions.edit && item.isEditable()" ng-click="item.getContent(); touch(item)" title="{{'edit' | translate}}">
         <i class="glyphicon glyphicon-pencil"></i>
     </button>
-    <button class="btn btn-sm btn-default" ng-show="config.allowedActions.download" ng-click="item.download()" title="{{'download' | translate}}">
-        <i class="glyphicon glyphicon-cloud-download"></i>
-    </button>
     <button class="btn btn-sm btn-default" ng-show="config.allowedActions.preview && item.isImage()" ng-click="smartClick(item)" title="{{'view_item' | translate}}">
         <i class="glyphicon glyphicon-picture"></i>
+    </button>
+    <button class="btn btn-sm btn-default" ng-show="config.allowedActions.download" ng-click="item.download()" title="{{'download' | translate}}">
+        <i class="glyphicon glyphicon-cloud-download"></i>
     </button>
     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete" ng-show="config.allowedActions.remove" ng-click="touch(item)" title="{{'remove' | translate}}">
         <i class="glyphicon glyphicon-trash"></i>

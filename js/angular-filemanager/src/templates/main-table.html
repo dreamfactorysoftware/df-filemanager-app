@@ -1,5 +1,5 @@
 <table class="table mb0 table-files">
-    <thead>
+    <thead ng-hide="fileNavigator.rootLevel">
         <tr>
             <th>
                 <a href="" ng-click="order('model.name')">
@@ -38,7 +38,7 @@
                 {{ fileNavigator.error }}
             </td>
         </tr>
-        <tr ng-repeat="item in fileNavigator.fileList | filter: query | orderBy:predicate:reverse" ng-show="!fileNavigator.requesting">
+        <tr ng-repeat="item in fileNavigator.fileList | filter: query | orderBy:predicate:reverse" ng-show="!fileNavigator.requesting" class="small-row">
             <td ng-right-click="touch(item)">
                 <a href="" ng-click="smartClick(item)" title="{{item.model.name}} ({{item.model.sizeKb()}}kb)">
                     <i class="glyphicon glyphicon-folder-close" ng-show="item.model.type === 'dir'"></i>
@@ -46,15 +46,15 @@
                     {{item.model.name | strLimit : 64}}
                 </a>
             </td>
-            <td class="hidden-xs" style="text-align: center;">
+            <td class="hidden-xs" style="text-align: center;" ng-hide="fileNavigator.rootLevel" class="small-cell">
                 {{item.model.sizeKb()}}kb
             </td>
-            <td class="hidden-sm hidden-xs" style="text-align: center;">
+            <td class="hidden-sm hidden-xs" style="text-align: center;" ng-hide="fileNavigator.rootLevel" class="small-cell">
                 <span ng-hide="item.model.date == 'Invalid Date'">
                     {{item.model.date | formatDate }}
                 </span>
             </td>
-            <td class="text-right" style="text-align: right;">
+            <td class="text-right" style="text-align: right;" ng-hide="fileNavigator.rootLevel" class="small-cell">
                 <div ng-include="config.tplPath + '/item-toolbar.html'"></div>
             </td>
         </tr>

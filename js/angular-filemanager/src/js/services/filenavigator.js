@@ -44,8 +44,10 @@
             var url = '';
             if(!path) {
                 url = fileManagerConfig.listUrl;
+                self.rootLevel = true;
             } else {
-                url = fileManagerConfig.baseUrl + path
+                url = fileManagerConfig.baseUrl + path;
+                self.rootLevel = false;
             }
 
             if(!url.endsWith('/')) url = url + '/';

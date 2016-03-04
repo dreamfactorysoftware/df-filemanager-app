@@ -1279,5 +1279,13 @@ margin-left:  auto;
 margin-right: auto;
 width:        200px;
 text-align:   center;
+}
 
+.small-row {
+  font-size: 0.9em;
+}
+
+.small-cell {
+  padding: 5px !important;
+  padding-left: 10px !important;
 }
