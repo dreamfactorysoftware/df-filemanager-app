@@ -24,15 +24,13 @@
     <script src="js/angular.min.js"></script>
     <script src="js/angular-translate.min.js"></script>
     <script src="js/angular-cookies.min.js"></script>
-    <!-- <script src="js/angular-filemanager.min.js"></script> -->
     <script src="static/bootstrap/3.3.6/bootstrap.js"></script>
 
     <link rel="stylesheet" href="css/angular-filemanager.css">
-    <script src="js/angular-filemanager.min.js"></script>
 
 
     <!-- uncomment these to use source -->
-    <!-- <script src="js/angular-filemanager/src/js/app.js"></script>
+    <script src="js/angular-filemanager/src/js/app.js"></script>
     <script src="js/angular-filemanager/src/js/directives/directives.js"></script>
     <script src="js/angular-filemanager/src/js/filters/filters.js"></script>
     <script src="js/angular-filemanager/src/js/providers/config.js"></script>
@@ -43,7 +41,7 @@
     <script src="js/angular-filemanager/src/js/providers/translations.js"></script>
     <script src="js/angular-filemanager/src/js/controllers/main.js"></script>
     <script src="js/angular-filemanager/src/js/controllers/selector-controller.js"></script>
-    <link href="js/angular-filemanager/src/css/angular-filemanager.css" rel="stylesheet"> -->
+    <link href="js/angular-filemanager/src/css/angular-filemanager.css" rel="stylesheet">
 
     <!-- DF FileManager -->
     <script src="js/filemanagement.js"></script>
@@ -100,52 +98,6 @@
 <div id="main_content" align="left">
     <div id="fileManagerPanel">
         <div align="left" class="cH100 ui-widget ui-state-default ui-corner-all ">
-            <!--
-                <div class="cTM1" align="left">
-                    <div id="browserControl">
-                        <div class="cRight fmToolbar cRM1">
-    								<span id="mandatory_tools">
-                                       <div class="btn-toolbar">
-                                           <div class="btn-group">
-                                               <a id="mkdir" class="btn btn-small fmActionButton"><i
-                                                       class="fa fa-folder"></i>&nbsp;Create Folder</a>&nbsp;
-                                               <a id="importfile"  class="btn btn-small fmActionButton"><i
-                                                       class="fa fa-cloud-upload"></i>&nbsp;Upload File</a>&nbsp;
-                                               <a id="exportzip"  class="btn btn-small fmActionButton"><i
-                                                       class="fa fa-download"></i>&nbsp;Download Zip</a>&nbsp;
-                                               <a id="rm" class="btn btn-small fmActionButton"><i
-                                                       class="fa fa-trash-o"></i>&nbsp;Delete Item(s)</a>
-                                           </div>
-                                       </div>
-    								</span>
-                        </div>
-                        <div class="cLeft cLM1 fmToolbarPlus3">
-                            <a id="home" class="btn btn-small fmActionButton"><i
-                                    class="fa fa-home"></i>&nbsp;Home</a>&nbsp;
-                            PATH:&nbsp;<span id="breadcrumbs">/</span>
-                        </div>
-                        <div class="cClear"></div>
-                    </div>
-                    <div id="fileControl">
-                        <div class="cRight fmToolbar">
-    								<span id="fileControl_mandatory_tools">
-    									<button id="exitEditor">Close Editor</button>
-    								</span>
-                        </div>
-                        <strong>EDITING&nbsp;FILE:</strong> <span id="fileControl_breadcrumbs">/</span>
-                    </div>
-                </div>
-                <div id="dndPanel" data-target="" data-type="folder" align="left" style="background: #fff;"
-                     class="cCenter cW98 cH90 ui-widget ui-state-default ui-corner-all">
-                    <div id="listing" class="scrollablePane cH95 cW98">
-
-                    </div>
-                </div>
-                <div id="editPanel" data-target="" data-type="folder" align="left" class="cCenter cW98 cH90">
-                    <iframe id="editing" width="100%" height="100%" src="about:blank"
-                            class="ui-widget ui-state-default ui-corner-all"></iframe>
-                </div>
-            -->
             <angular-filemanager></angular-filemanager>
         </div>
         <div class="cClear"></div>
