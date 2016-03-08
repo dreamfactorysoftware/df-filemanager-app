@@ -1,0 +1,39 @@
+{
+  "name": "angular-filemanager",
+  "version": "1.4.0",
+  "homepage": "https://github.com/joni2back/angular-filemanager",
+  "authors": [
+    "Jonas Sciangula Street <joni2back@gmail.com>"
+  ],
+  "description": "A very smart filemanager to manage your files in the browser.",
+  "main": "js/app.js",
+  "keywords": [
+    "filemanager"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "angular-translate": "~2.4.0",
+    "angular-cookies": "~1.3.17",
+    "bootstrap": "~3.3.2",
+    "jquery": "~2.1.3",
+    "bootswatch": "3.3.5"
+  },
+  "_release": "1.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.4.0",
+    "commit": "ecfb1e6e7bd97a06038ef355f3d797c2d480f07f"
+  },
+  "_source": "git://github.com/joni2back/angular-filemanager.git",
+  "_target": "~1.4.0",
+  "_originalSource": "angular-filemanager",
+  "_direct": true
+}
