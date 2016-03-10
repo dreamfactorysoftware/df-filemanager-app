@@ -42,8 +42,8 @@ EditorActions = {
     },
     getFileName:function () {
         var pathArray = EditorActions.getQueryParameter('path').split('/');
-
-        return pathArray[pathArray.length - 1];
+        var fileName = pathArray[pathArray.length-1]
+        return fileName.split('?')[0];
     },
     saveFile:function(){
         var fileData = Editor.getValue();
