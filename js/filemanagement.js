@@ -408,7 +408,7 @@ function loadFolder(path) {
             },
             dataType: 'json',
             url: CurrentServer + '/api/v2/system/service',
-            data: "fields=name&filter=" + escape("type='local_file' or type='aws_s3' or type='azure_blob' or type='rackspace_cloud_files' or type='openstack_object_storage'"),
+            data: "fields=name&filter=" + escape("type='local_file' or type='aws_s3' or type='azure_blob' or type='rackspace_cloud_files'"),
             cache: false,
             success: function (response) {
                 try {
@@ -753,3 +753,20 @@ function checkResults(iframe) {
         }
     }
 }
+angular.module('FileManagerApp')
+
+.constant('API_KEY', apiKey)
+
+.constant('SESSION_TOKEN', sessionToken)
+
+.config(['fileManagerConfigProvider', '$httpProvider', function (config, $httpProvider) {
+
+  $httpProvider.defaults.headers.common['X-Dreamfactory-API-Key'] = apiKey;
+  $httpProvider.defaults.headers.common['X-DreamFactory-Session-Token'] = sessionToken;
+
+  var defaults = config.$get();
+  config.set({
+    listUrl: "/api/v2/system/service?fields=name&filter=type%3D%27local_file%27%20or%20type%3D%27aws_s3%27%20or%20type%3D%27azure_blob%27%20or%20type%3D%27rackspace_cloud_files%27&_=1455310375411",
+    tplPath: 'js/angular-filemanager/' + defaults.tplPath
+  });
+}]);

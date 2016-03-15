@@ -1080,7 +1080,7 @@ height: 98%;
 }
 
 .cH100 {
-height: 100%;
+background: #f6f6f6;
 }
 
 .cM1 {
@@ -1279,5 +1279,13 @@ margin-left:  auto;
 margin-right: auto;
 width:        200px;
 text-align:   center;
+}
 
+.small-row {
+  font-size: 0.9em;
+}
+
+.small-cell {
+  padding: 5px !important;
+  padding-left: 10px !important;
 }
