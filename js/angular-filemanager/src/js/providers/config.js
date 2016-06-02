@@ -7,7 +7,7 @@
             defaultLang: "en",
 
             baseUrl: "/api/v2/",
-            listUrl: "/api/v2/system/service?fields=name&filter=type%3D%27local_file%27%20or%20type%3D%27aws_s3%27%20or%20type%3D%27azure_blob%27%20or%20type%3D%27rackspace_cloud_files%27&_=1455310375411",
+            listUrl: "/api/v2/system/service?fields=name&filter=type%20IN%20('local_file'%2C'aws_s3'%2C'azure_blob'%2C'rackspace_cloud_files')&_=1455310375411",
             uploadUrl: "bridges/php/handler.php",
             renameUrl: "bridges/php/handler.php",
             copyUrl: "bridges/php/handler.php",
