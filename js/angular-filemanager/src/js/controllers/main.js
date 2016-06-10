@@ -147,7 +147,7 @@
 
         $scope.uploadFiles = function() {
 
-            $scope.fileUploader.upload($scope.uploadFileList, $scope.fileNavigator.currentPath).then(function() {
+            $scope.fileUploader.upload($scope.uploadFileList, $scope.fileNavigator.currentPath, $scope.importExtract, $scope.importReplace).then(function() {
                 $scope.fileNavigator.refresh();
                 $scope.modal('uploadfile', true);
             }, function(data) {
@@ -166,6 +166,17 @@
             });
             return found;
         };
+
+        $scope.$watchCollection('uploadFileList', function (newValue, oldValue) {
+            $('#importOptions').hide();
+
+            for (var i = 0; i < newValue.length; i++) {
+                if (newValue.item(i).name.indexOf('.zip') >= 0) {
+                    $('#importOptions').show();
+                    break;
+                }
+            }    
+        });
 
         $scope.changeLanguage($scope.getQueryParam('lang'));
         $scope.isWindows = $scope.getQueryParam('server') === 'Windows';

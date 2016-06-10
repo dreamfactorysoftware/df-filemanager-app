@@ -1,14 +1,19 @@
-<ol class="breadcrumb mb0">
+<!--ol class="breadcrumb mb0"-->
+<ol class="breadcrumb" style="border: 1px solid #ddd">
     <li>
         <a href="" ng-click="fileNavigator.goTo(-1)">
-            <i class="glyphicon glyphicon-folder-open mr2"></i>
+            <i class="fa fa-folder-open-o"></i>
         </a>
     </li>
     <li ng-repeat="(key, dir) in fileNavigator.currentPath track by key" ng-class="{'active':$last}" class="animated fast fadeIn">
-        <a href="" ng-show="!$last" ng-click="fileNavigator.goTo(key)">
-            <i class="glyphicon glyphicon-folder-open mr2"></i> {{dir}}
+        <a href="" ng-show="!$last" ng-click="fileNavigator.goTo(key)" style="font-size: 14px">
+            <i class="fa fa-folder-open-o"></i>&nbsp;{{dir}}
         </a>
-        <span ng-show="$last"><i class="glyphicon glyphicon-folder-open mr2"></i>  {{dir}}</span>
+        <span ng-show="$last" style="font-size: 14px"><i class="fa fa-folder-open-o"></i>&nbsp;&nbsp;{{dir}}</span>
     </li>
-    <li><button class="btn btn-primary btn-xs" ng-click="fileNavigator.upDir()">&crarr;</button></li>
+    <li>
+        <button class="btn btn-link btn-xs" ng-click="fileNavigator.upDir()">
+            <i class="fa fa-mail-reply"></i>
+        </button>
+    </li>
 </ol>

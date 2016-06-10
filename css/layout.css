@@ -1289,3 +1289,33 @@ text-align:   center;
   padding: 5px !important;
   padding-left: 10px !important;
 }
+
+.main-table table {
+    width: 100%;
+}
+
+.main-table thead, tbody, tr, td, th { 
+    display: block; 
+}
+
+.main-table tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.main-table tbody {
+    height: 250px;
+    overflow-y: auto;
+}
+
+.main-table thead {
+    width: 97%;
+    width: calc(100% - 17px);
+}
+
+.main-table tbody td, thead th {
+    width: 25%;
+    float: left;
+}

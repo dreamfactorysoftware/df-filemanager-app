@@ -220,8 +220,22 @@
               <h4 class="modal-title">{{"upload_file" | translate}}</h4>
             </div>
             <div class="modal-body">
+            <div class="form-group">
               <label class="radio">{{"files_will_uploaded_to" | translate}} <b>{{fileNavigator.currentPath.join('/')}}</b></label>
-              <input type="file" class="form-control" ng-file="$parent.uploadFileList" autofocus="autofocus" multiple="multiple"/>
+              <input type="file" ng-file="$parent.uploadFileList" multiple="multiple" />
+              </div>
+              <div id="importOptions" style="display: none">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="$parent.importExtract"> Extract ZIP files
+                  </label>
+                </div>           
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="$parent.importReplace"> Delete existing folder contents before extracting
+                  </label>
+                </div>
+              </div>
               <div ng-include data-src="'error-bar'" class="clearfix"></div>
             </div>
             <div class="modal-footer">
