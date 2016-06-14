@@ -87,7 +87,7 @@ EditorActions = {
     },
     loadEditor:function(contents, mode){
         Editor = ace.edit("editor");
-        Editor.setTheme("ace/theme/twilight");
+
         if(mode){
             Editor.getSession().setMode("ace/mode/json");
         }else{
