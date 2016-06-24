@@ -1306,7 +1306,7 @@ text-align:   center;
 }
 
 .main-table tbody {
-    height: 250px;
+    height: calc(100vh - 160px);
     overflow-y: auto;
 }
 
