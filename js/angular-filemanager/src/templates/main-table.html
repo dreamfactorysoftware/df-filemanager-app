@@ -1,25 +1,25 @@
-<table class="table mb0 table-files">
-    <thead ng-hide="fileNavigator.rootLevel">
+<table class="table mb0 table-files main-table" >
+    <thead ng-hide="fileNavigator.rootLevel" >
         <tr>
-            <th>
-                <a href="" ng-click="order('model.name')">
+            <th style="text-align: left;">
+                <a href="" ng-click="order('model.name')" style="font-size: 14px; text-align: left">
                     {{"name" | translate}}
                     <span class="sortorder" ng-show="predicate[1] === 'model.name'" ng-class="{reverse:reverse}"></span>
                 </a>
             </th>
             <th class="hidden-xs">
-                <a href="" ng-click="order('model.size')">
+                <a href="" ng-click="order('model.size')" style="font-size: 14px">
                     {{"size" | translate}}
                     <span class="sortorder" ng-show="predicate[1] === 'model.size'" ng-class="{reverse:reverse}"></span>
                 </a>
             </th>
             <th class="hidden-sm hidden-xs">
-                <a href="" ng-click="order('model.date')">
+                <a href="" ng-click="order('model.date')" style="font-size: 14px">
                     {{"date" | translate}}
                     <span class="sortorder" ng-show="predicate[1] === 'model.date'" ng-class="{reverse:reverse}"></span>
                 </a>
             </th>
-            <th class="text-right"></th>
+            <th class="hidden-sm hidden-xs text-right"><span style="font-size: 14px">&nbsp;</span></th>
         </tr>
     </thead>
     <tbody class="file-item">
@@ -40,23 +40,28 @@
         </tr>
         <tr ng-repeat="item in fileNavigator.fileList | filter: query | orderBy:predicate:reverse" ng-show="!fileNavigator.requesting" class="small-row">
             <td ng-right-click="touch(item)">
-                <a href="" ng-click="smartClick(item)" title="{{item.model.name}} ({{item.model.sizeKb()}}kb)">
-                    <i class="glyphicon glyphicon-folder-close" ng-show="item.model.type === 'dir'"></i>
-                    <i class="glyphicon glyphicon-file" ng-show="item.model.type === 'file'"></i>
+                <a href="" ng-click="smartClick(item)" title="{{item.model.name}} ({{item.model.sizeKb()}} KB)"  style="font-size: 14px">
+                    <i class="fa fa-folder-o" ng-show="item.model.type === 'folder'"></i>
+                    <i class="fa fa-file" ng-show="item.model.type === 'file'"></i>
                     {{item.model.name | strLimit : 64}}
                 </a>
             </td>
-            <td class="hidden-xs" style="text-align: center;" ng-hide="fileNavigator.rootLevel" class="small-cell">
-                {{item.model.sizeKb()}}kb
+            <td class="hidden-xs" style="text-align: center;" ng-hide="fileNavigator.rootLevel" class="small-cell"  style="font-size: 14px">
+                <span ng-show="item.model.type === 'file'"  style="font-size: 14px">
+                    {{item.model.sizeKb()}} KB
+                </span>
             </td>
             <td class="hidden-sm hidden-xs" style="text-align: center;" ng-hide="fileNavigator.rootLevel" class="small-cell">
-                <span ng-hide="item.model.date == 'Invalid Date'">
+                <span ng-hide="item.model.date == 'Invalid Date'"  style="font-size: 14px">
                     {{item.model.date | formatDate }}
                 </span>
             </td>
             <td class="text-right" style="text-align: right;" ng-hide="fileNavigator.rootLevel" class="small-cell">
                 <div ng-include="config.tplPath + '/item-toolbar.html'"></div>
             </td>
+            <td ng-hide="!fileNavigator.rootLevel"></td>
+            <td ng-hide="!fileNavigator.rootLevel"></td>
+            <td ng-hide="!fileNavigator.rootLevel"></td>
         </tr>
     </tbody>
 </table>

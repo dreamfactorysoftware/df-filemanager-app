@@ -19,17 +19,22 @@
         }
 
         this.requesting = false;
-        this.upload = function(fileList, path) {
+        this.upload = function(fileList, path, extractZip, removeExisting) {
             if (! window.FormData) {
                 throw new Error('Unsupported browser version');
             }
+
+            var params = '';
+            if (extractZip) {
+                params += '&extract=' + extractZip; 
+                params += '&clean=' + removeExisting;
+            }
+
             var self = this;
             var form = new window.FormData();
             var deferred = $q.defer();
             path = path.join('/');
-            if(!path.endsWith('/')) path = path + '/?api_key=' + API_KEY + '&session_token=' + SESSION_TOKEN;
-
-            //form.append('destination', '/' + path);
+            if(!path.endsWith('/')) path = path + '/?api_key=' + API_KEY + '&session_token=' + SESSION_TOKEN + params;
 
             for (var i = 0; i < fileList.length; i++) {
                 var fileObj = fileList.item(i);
