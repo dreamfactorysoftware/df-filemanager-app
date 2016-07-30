@@ -146,14 +146,22 @@
         };
 
         $scope.uploadFiles = function() {
-
             $scope.fileUploader.upload($scope.uploadFileList, $scope.fileNavigator.currentPath, $scope.importExtract, $scope.importReplace).then(function() {
                 $scope.fileNavigator.refresh();
                 $scope.modal('uploadfile', true);
+                $scope.importExtract = false;
+                $scope.importReplace = false;
+                angular.element("input[type='file']").val(null);
             }, function(data) {
                 var errorMsg = data.result && data.result.error || $translate.instant('error_uploading_files');
                 $scope.temp.error = errorMsg;
             });
+        };
+
+        $scope.clearUploadModal = function() {
+          $scope.importExtract = false;
+          $scope.importReplace = false;
+          angular.element("input[type='file']").val(null);
         };
 
         $scope.getQueryParam = function(param) {
@@ -175,7 +183,7 @@
                     $('#importOptions').show();
                     break;
                 }
-            }    
+            }
         });
 
         $scope.changeLanguage($scope.getQueryParam('lang'));
