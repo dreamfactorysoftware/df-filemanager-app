@@ -3,12 +3,13 @@
     angular.module('FileManagerApp').factory('item', ['$http', '$q', '$translate', 'fileManagerConfig', 'chmod', 'API_KEY', 'SESSION_TOKEN', function($http, $q, $translate, fileManagerConfig, Chmod, API_KEY, SESSION_TOKEN) {
 
         var Item = function(model, path) {
+
             var rawModel = {
                 name: model && model.name || '',
                 path: path || [],
                 type: model && model.type || 'file',
                 size: model && parseInt(model.size || 0),
-                date: parseMySQLDate(model && model.date),
+                date: model && model.date,
                 perms: new Chmod(model && model.rights),
                 content: model && model.content || '',
                 content_type: model && model.content_type,
@@ -32,11 +33,6 @@
             this.tempModel = angular.copy(rawModel);
             function getMonthFromString(mon){
                return new Date(Date.parse(mon +" 1, 2012")).getMonth()+1
-            }
-
-            function parseMySQLDate(mysqlDate) {
-                var d = (mysqlDate || '').toString().split(/[- :]/);
-                return new Date(d[3], getMonthFromString(d[2]), d[1], d[4], d[5], d[6]);
             }
         };
 
