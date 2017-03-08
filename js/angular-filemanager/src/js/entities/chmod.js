@@ -1,5 +1,5 @@
 (function(angular) {
-    "use strict";
+    'use strict';
     angular.module('FileManagerApp').service('chmod', function () {
 
         var Chmod = function(initValue) {
@@ -13,7 +13,7 @@
                     this.convertfromOctal(initValue);
 
                 if (! codes) {
-                    throw new Error('Invalid chmod input data');
+                    throw new Error('Invalid chmod input data (%s)'.replace('%s', initValue));
                 }
 
                 this.owner = codes.owner;
@@ -23,26 +23,22 @@
         };
 
         Chmod.prototype.toOctal = function(prepend, append) {
-            var props = ['owner', 'group', 'others'];
             var result = [];
-            for (var i in props) {
-                var key = props[i];
+            ['owner', 'group', 'others'].forEach(function(key, i) {
                 result[i]  = this[key].read  && this.octalValues.read  || 0;
                 result[i] += this[key].write && this.octalValues.write || 0;
                 result[i] += this[key].exec  && this.octalValues.exec  || 0;
-            }
+            }.bind(this));
             return (prepend||'') + result.join('') + (append||'');
         };
 
         Chmod.prototype.toCode = function(prepend, append) {
-            var props = ['owner', 'group', 'others'];
             var result = [];
-            for (var i in props) {
-                var key = props[i];
+            ['owner', 'group', 'others'].forEach(function(key, i) {
                 result[i]  = this[key].read  && this.codeValues.read  || '-';
                 result[i] += this[key].write && this.codeValues.write || '-';
                 result[i] += this[key].exec  && this.codeValues.exec  || '-';
-            }
+            }.bind(this));
             return (prepend||'') + result.join('') + (append||'');
         };
 
@@ -65,7 +61,7 @@
         Chmod.prototype.convertfromCode = function (str) {
             str = ('' + str).replace(/\s/g, '');
             str = str.length === 10 ? str.substr(1) : str;
-            if (! /^[-rwx]{9}$/.test(str)) {
+            if (! /^[-rwxts]{9}$/.test(str)) {
                 return;
             }
 
@@ -74,7 +70,7 @@
                 var rwxObj = this.getRwxObj();
                 rwxObj.read  = /r/.test(vals[i]);
                 rwxObj.write = /w/.test(vals[i]);
-                rwxObj.exec  = /x/.test(vals[i]);
+                rwxObj.exec  = /x|t/.test(vals[i]);
                 result.push(rwxObj);
             }
 
