@@ -127,7 +127,10 @@
             !self.history.length && self.history.push({name: path, nodes: []});
             for (var o in self.fileList) {
                 var item = self.fileList[o];
-                item.isFolder() && recursive(self.history[0], item, path);
+
+                if(typeof(item) === Object) {
+                    item.isFolder() && recursive(self.history[0], item, path);
+                }
             }
         };
 
@@ -170,8 +173,10 @@
         FileNavigator.prototype.listHasFolders = function() {
             var self = this;
             for (var item in self.fileList) {
-                if (self.fileList[item].model.type === 'dir') {
-                    return true;
+                if (self.fileList[item].model !== undefined) {
+                    if (self.fileList[item].model.type === 'dir') {
+                        return true;
+                    }
                 }
             }
         };
