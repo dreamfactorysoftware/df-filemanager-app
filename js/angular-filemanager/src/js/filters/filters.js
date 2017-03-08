@@ -17,7 +17,7 @@
             var ret = false;
 
             try {
-                var d = new Date(new Date(input).toLocaleString());
+                var d = new Date(input);
 
                 ret = d.getFullYear() + '-'
                         + ('0' + (d.getMonth() + 1)).slice(-2) + '-'
