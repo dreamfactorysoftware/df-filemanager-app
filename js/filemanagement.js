@@ -408,7 +408,7 @@ function loadFolder(path) {
             },
             dataType: 'json',
             url: CurrentServer + '/api/v2/system/service',
-            data: "fields=name&filter=" + escape("type IN ('local_file','aws_s3','azure_blob','rackspace_cloud_files','openstack_object_storage')"),
+            data: "fields=name&filter=" + escape("type IN ('local_file','aws_s3','azure_blob','rackspace_cloud_files','openstack_object_storage','ftp_file','sftp_file')"),
             cache: false,
             success: function (response) {
                 try {
@@ -766,7 +766,7 @@ angular.module('FileManagerApp')
 
   var defaults = config.$get();
   config.set({
-    listUrl: "/api/v2/system/service?fields=name&filter=type%20IN%20('local_file'%2C'aws_s3'%2C'azure_blob'%2C'rackspace_cloud_files'%2C'openstack_object_storage')&_=1455310375411",
+    listUrl: "/api/v2/system/service?fields=name&filter=type%20IN%20('local_file'%2C'aws_s3'%2C'azure_blob'%2C'rackspace_cloud_files'%2C'openstack_object_storage'%2C'ftp_file'%2C'sftp_file')&_=1455310375411",
     tplPath: 'js/angular-filemanager/' + defaults.tplPath
   });
 }]);
