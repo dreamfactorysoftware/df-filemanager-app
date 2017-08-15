@@ -7,7 +7,7 @@
             defaultLang: "en",
 
             baseUrl: "/api/v2/",
-            listUrl: "/api/v2/system/service?fields=name&filter=type%20IN%20('local_file'%2C'aws_s3'%2C'azure_blob'%2C'rackspace_cloud_files'%2C'openstack_object_storage'%2C'ftp_file'%2C'sftp_file'%2c'webdav_file')&_=1455310375411",
+            listUrl: "/api/v2?group=File&_=1455310375411",
             uploadUrl: "bridges/php/handler.php",
             renameUrl: "bridges/php/handler.php",
             copyUrl: "bridges/php/handler.php",

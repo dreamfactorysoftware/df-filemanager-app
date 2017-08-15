@@ -55,29 +55,27 @@
             $http.get(url).success(function(data) {
                 var returnValue = {}, date, type, size, content_type;
                 returnValue.result = [];
-                angular.copy(data.resource).forEach(function(item) {
+                // this is hacky but needed for /api/v2 to work for services
+                var items = path ? data.resource : data.services;
+                if (!path) {
+                    // name only
+                    items = items.map(function(item) {
+                        return {"name": item.name};
+                    });
+                }
+                angular.copy(items).forEach(function(item) {
                     date = item.last_modified || new Date();
                     type = item.type || "folder";
                     size = item.content_length || "";
                     content_type= item.content_type;
-
-                    if(!item.name) returnValue.result.push({
-                        'name': item,
+                    returnValue.result.push({
+                        'name': item.name ? item.name : item,
                         'date': date,
                         'type': type,
                         'size': size,
                         'content_type': content_type
                     });
-                    else returnValue.result.push({
-                        'name': item.name,
-                        'date': date,
-                        'type': type,
-                        'size': size,
-                        'content_type': content_type
-                    });
-
-
-                })
+                });
 
                 self.deferredHandler(returnValue, deferred);
             }).error(function(data) {
