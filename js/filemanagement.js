@@ -77,32 +77,47 @@ $(document).ready(function () {
     loadRootFolder();
 });
 
-// Session inherited from query parameter, iframe, or opener
+var readCookie = function (name) {
+
+    // Escape regexp special characters
+    name = name.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
+
+    var regex = new RegExp('(?:^|;)\\s?' + name + '=(.*?)(?:;|$)','i'),
+        match = null;
+
+    if (window.opener) {
+        // check for opened from launchpad or apps tab
+        match = window.opener.document.cookie.match(regex);
+    }
+
+    if (match === null) {
+        // check for opened from files tab
+        match = window.parent.document.cookie.match(regex);
+    }
+
+    return match && unescape(match[1]);
+};
+
 function getSessionToken() {
-    var phpSessionId = CommonUtilities.getQueryParameter('session_token');
-    if (phpSessionId)
-        return phpSessionId;
 
-    phpSessionId = parent.document.cookie.match(/PHPSESSID=[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\;/i);
+    // check query params
+    var sessionToken = CommonUtilities.getQueryParameter('session_token');
+    if (sessionToken) {
+        return sessionToken;
+    }
 
-    if ((phpSessionId == null) && (window.opener))
-        phpSessionId = window.opener.document.cookie.match(/PHPSESSID=[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\;/i);
+    // try to inherit cookie value
+    sessionToken = '';
+    var userObj = readCookie('CurrentUserObj');
+    if (userObj) {
+        try {
+            userObj = JSON.parse(userObj);
+            sessionToken = userObj.session_token;
+        } catch(e) {
 
-    if (phpSessionId == null)
-        return '';
-
-    if (typeof(phpSessionId) == 'undefined')
-        return '';
-
-    if (phpSessionId.length <= 0)
-        return '';
-
-    phpSessionId = phpSessionId[0];
-
-    var end = phpSessionId.lastIndexOf(';');
-    if (end == -1) end = phpSessionId.length;
-
-    return phpSessionId.substring(10, end);
+        }
+    }
+    return sessionToken;
 }
 
 var sessionToken = getSessionToken();
