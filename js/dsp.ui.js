@@ -2,7 +2,7 @@
  * This file is part of the DreamFactory Services Platform(tm) (DSP)
  *
  * DreamFactory Services Platform(tm) <http://github.com/dreamfactorysoftware/dsp-core>
- * Copyright 2012-2014 DreamFactory Software, Inc. <support@dreamfactory.com>
+ * Copyright 2012-2017 DreamFactory Software, Inc. <dspsupport@dreamfactory.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
