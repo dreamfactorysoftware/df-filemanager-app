@@ -14,7 +14,7 @@
     </div>
 
     <div class="alert alert-warning" ng-show="!fileNavigator.requesting && fileNavigator.fileList.length < 1 && !fileNavigator.error">
-        {{"no_files_in_folder" | translate}}...
+        {{(fileNavigator.rootLevel ? "no_file_services" : "no_files_in_folder") | translate}}...
     </div>
     
     <div class="alert alert-danger" ng-show="!fileNavigator.requesting && fileNavigator.error">
