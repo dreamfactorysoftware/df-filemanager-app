@@ -23,10 +23,6 @@ The app starts by loading the file services and displaying them as the top level
 
 If you are in the admin app and click the Files tab, you want to launch the File Manager in an iframe and have it pick up the session previously established by the admin app. It first checks for session_token as an explicit query param, then checks for a cookie named 'CurrentUserObj' in window.parent. The Files tab is the parent of the File Manager iframe. 'CurrentUserObj' is the name of the cookie stored by the admin app when a user logs in. If you are in LaunchPad the file manager gets launched in new window, and it looks for the cookie in window.opener. In either case, if that cookie exists it grabs the session_token out of the session info. This token will be used in subsequent API calls made by the file manager, along with the hardcoded API key.
 
-```
-url: CurrentServer + '/api/v2?group=File'
-```
-
 ### Build Process
 
 The structure and deployment of this app is not very good. The code is all under /js and there is no build process in place like there is for the admin app and API docs app. In other words there is no 'app' or 'dist' version. You are just editing and running the code under /js as is.
@@ -64,7 +60,9 @@ git push --tags
 
 If you add a new type of file storage service to DreamFactory, those services will show up in File Manager without requiring any changes. When it queries the list of services it looks for all services where group is set to 'File'. Note that for non-admin users /api/v2 will only return services that your role grants access to.
 
-
+```
+url: CurrentServer + '/api/v2?group=File'
+```
 
 
 
