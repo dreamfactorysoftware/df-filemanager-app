@@ -23,6 +23,8 @@
         "email":  "dspsupport@dreamfactory.com",
         "wiki":   "https://wiki.dreamfactory.com"
     },
+    "minimum-stability": "dev",
+    "prefer-stable":     true,
     "require":           {
         "dreamfactory/installer": "*"
     },
