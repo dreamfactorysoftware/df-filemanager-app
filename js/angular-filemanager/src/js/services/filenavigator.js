@@ -45,24 +45,33 @@
             if(!path) {
                 url = fileManagerConfig.listUrl;
                 self.rootLevel = true;
+                if(!url.endsWith('/')) url = url + '/';
             } else {
-                url = fileManagerConfig.baseUrl + path;
+                url = fileManagerConfig.baseUrl + path + '/?user_permission=true';
                 self.rootLevel = false;
             }
-
-            if(!url.endsWith('/')) url = url + '/';
 
             $http.get(url).success(function(data) {
                 var returnValue = {}, date, type, size, content_type;
                 returnValue.result = [];
                 // this is hacky but needed for /api/v2 to work for services
                 var items = path ? data.resource : data.services;
+
+                const permissionExists = function(obj) { return obj.hasOwnProperty('user_permission')};
+
+                if (items.some(permissionExists)) {
+                  const permissionIndex = items.findIndex(permissionExists)
+                  const permission = items.pop(permissionIndex);
+                  self.hasDeletePermission = permission.user_permission >= 17;
+                }
+
                 if (!path) {
                     // name only
                     items = items.map(function(item) {
                         return {"name": item.name};
                     });
                 }
+
                 angular.copy(items).forEach(function(item) {
                     date = item.last_modified || new Date();
                     type = item.type || "folder";
@@ -83,6 +92,7 @@
             })['finally'](function(data) {
                 self.requesting = false;
             });
+
             return deferred.promise;
         };
 
