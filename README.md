@@ -1,6 +1,11 @@
 # df-filemanager-app
 Standalone File Manager application for DreamFactory file services based on [this](https://github.com/joni2back/angular-filemanager).
 
+
+## Overview
+
+DreamFactory is a secure, self-hosted enterprise data access platform that provides governed API access to any data source, connecting enterprise applications and on-prem LLMs with role-based access and identity passthrough.
+
 This app runs in an iframe inside the Files tab of the admin app or, when opened from LaunchPad, in a new browser tab. In LaunchPad the File Manager can be selected from the list of available apps. File Manager is always part of the default DreamFactory installation, accessed from /filemanager/index.html.
 
 The purpose of the app is to display a list of available file storage services, allowing the user to navigate the folders. You can create or delete files and folders. You can download files, and it also includes the ACE editor for editing text files.
@@ -63,6 +68,5 @@ If you add a new type of file storage service to DreamFactory, those services wi
 ```
 url: CurrentServer + '/api/v2?group=File'
 ```
-
 
 
