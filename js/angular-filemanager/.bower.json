@@ -23,7 +23,7 @@
     "angular-translate": "~2.4.0",
     "angular-cookies": "~1.3.17",
     "bootstrap": "~3.3.2",
-    "jquery": "~2.1.3",
+    "jquery": "^3.5.1",
     "bootswatch": "3.3.5"
   },
   "_release": "1.4.0",
